@@ -7,9 +7,27 @@ export class MiniService {
 
   public minis: Mini[] = [];
 
-  constructor() { }
+  constructor() { 
+    this.minis = [
+      {
+        name: "gnome druid",
+        imagePath: "assets/img/gnome_druid.jpg"
+      },
+      {
+        name: "human druid",
+        imagePath: "assets/img/human_druid.jpg"
+      }
+    ]
+  }
+
+  filterMinis(searchTerm) {
+    return this.minis.filter(mini => {
+      return mini.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+    })
+  }
 }
 
 class Mini {
-  data: any;
+  name: string;
+  imagePath: string;
 }
