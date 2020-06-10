@@ -41,6 +41,7 @@ export class Tab1Page implements OnInit  {
     this.filterChips[chipId].selected = this.toggleChipSelection(chipId);
     this.filterChips[chipId].color = this.changeChipColor(chipId);
     let fieldsToFilterOn = this.getFilterFields(this.filterChips);
+    this.minis = this.miniService.filterMinis(fieldsToFilterOn);
 
     console.log('fieldsToFilterOn', fieldsToFilterOn);
   }
@@ -69,13 +70,6 @@ export class Tab1Page implements OnInit  {
     return chips.filter(chip => chip.selected)
         .map(chip => chip.label);
   }
-
-  // clickChip() {
-  //   console.log('in clickChip');
-  //   this.minis = this.miniService.clickChip();
-  //   console.log('this.minis', this.minis);
-
-  // }
 }
 
 class FilterChip {

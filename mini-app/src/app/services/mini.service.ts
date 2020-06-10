@@ -18,24 +18,41 @@ export class MiniService {
       {
         id: 2,
         name: "human druid",
-        playerCharacter: false,
+        playerCharacter: true,
         imagePath: "assets/img/human_druid.jpg"
       }
     ]
   }
 
-  searchMinis(searchTerm) {
+  searchMinis(searchTerm: string) {
     return this.minis.filter(mini => {
       return mini.name.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
     })
   }
 
-  clickChip() {
-    return this.minis.filter(mini => {
-      if(mini.hasOwnProperty('playerCharacter')) {
-        return mini.playerCharacter;
-      }
-    });
+  filterMinis(filters: string[]) {
+    if(filters.length > 0) {
+      let includePlayerCharacters = filters.indexOf('Player Characters') > -1;
+      let includeNonPlayerCharacters = filters.indexOf('Non Player Characters') > -1;
+
+      return this.minis.filter((mini, index) => {
+        if(includePlayerCharacters && mini.playerCharacter) {
+          return true;
+        }
+
+        if(includeNonPlayerCharacters && mini.nonPlayerCharacter) {
+          return true;
+        }
+
+        else {
+          return false;
+        }
+      })
+    }
+
+    else {
+      return this.minis;
+    }
   }
 }
 
