@@ -13,7 +13,33 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setSearchedMinis()"></ion-searchbar>
+
+  <!-- <ion-list radio-group [(ngModel)]="relationship"> -->
+  <form (submit)="doSubmit($event)" [formGroup]="genderForm">
+    <ion-list radio-group formControlName="genders">
+      <ion-list-header>
+        Gender
+      </ion-list-header>
+    
+      <ion-item>
+        <ion-label>Male</ion-label>
+        <ion-radio value="male"></ion-radio>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label>Female</ion-label>
+        <ion-radio value="female"></ion-radio>
+      </ion-item>
+    </ion-list>
+  </form>
+
+  <!-- <ion-chip>
+    <ion-label>Player Character</ion-label>
+    <button ion-button clear color="light" (click)="filterPlayerCharacters()"></button>
+      <ion-icon name="close-circle"></ion-icon>
+    </button>
+  </ion-chip> -->
 
   <ion-grid>
     <ion-row>
