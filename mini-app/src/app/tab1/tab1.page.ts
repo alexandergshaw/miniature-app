@@ -10,14 +10,22 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class Tab1Page implements OnInit  {
   public searchTerm: string = "";
   public minis: any;
-  genders;
-  genderForm;
+  public filterChips: FilterChip[] = [
+    {
+      id: 0,
+      label: 'Player Characters',
+      color: 'secondary'
+    },
+    {
+      id: 1,
+      label: 'Non Player Characters',
+      color: 'secondary'
+    }
+  ];
+  public colors: string[] = [];
 
-  constructor(private miniService: MiniService) {
-    this.genderForm = new FormGroup({
-      "genders": new FormControl({value: 'male'})
-    });
-  }
+
+  constructor(private miniService: MiniService) {}
 
   ngOnInit() {
     this.setSearchedMinis();
@@ -27,10 +35,27 @@ export class Tab1Page implements OnInit  {
     this.minis = this.miniService.searchMinis(this.searchTerm);
   }
 
-  filterPlayerCharacters() {
-    console.log('in filterPlayerCharacters');
-    this.minis = this.miniService.filterPlayerCharacters();
-    console.log('this.minis', this.minis);
+  clickChip(chipId: number) {
+    if(this.filterChips[chipId].color === 'secondary') {
+      this.filterChips[chipId].color = 'primary'
+    }
+
+    else if(this.filterChips[chipId].color === 'primary') {
+      this.filterChips[chipId].color = 'secondary'
+    }
 
   }
+
+  // clickChip() {
+  //   console.log('in clickChip');
+  //   this.minis = this.miniService.clickChip();
+  //   console.log('this.minis', this.minis);
+
+  // }
+}
+
+class FilterChip {
+  id: number;
+  label: string;
+  color: string;
 }

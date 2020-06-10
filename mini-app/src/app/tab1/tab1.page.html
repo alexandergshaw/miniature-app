@@ -16,7 +16,7 @@
   <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setSearchedMinis()"></ion-searchbar>
 
   <!-- <ion-list radio-group [(ngModel)]="relationship"> -->
-  <form (submit)="doSubmit($event)" [formGroup]="genderForm">
+  <!-- <form (submit)="doSubmit($event)" [formGroup]="genderForm">
     <ion-list radio-group formControlName="genders">
       <ion-list-header>
         Gender
@@ -32,14 +32,18 @@
         <ion-radio value="female"></ion-radio>
       </ion-item>
     </ion-list>
-  </form>
+  </form> -->
 
   <!-- <ion-chip>
     <ion-label>Player Character</ion-label>
-    <button ion-button clear color="light" (click)="filterPlayerCharacters()"></button>
+    <button ion-button clear color="light" (click)="clickChip()"></button>
       <ion-icon name="close-circle"></ion-icon>
     </button>
   </ion-chip> -->
+
+  <ion-chip *ngFor="let chip of filterChips; let i = index" [id]="chip.id" [color]="chip.color" (click)="clickChip(i)">
+    <ion-label>{{chip.label}}</ion-label>
+  </ion-chip>
 
   <ion-grid>
     <ion-row>

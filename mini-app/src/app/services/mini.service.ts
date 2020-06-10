@@ -10,11 +10,13 @@ export class MiniService {
   constructor() { 
     this.minis = [
       {
+        id: 1,
         name: "gnome druid",
         playerCharacter: true,
         imagePath: "assets/img/gnome_druid.jpg"
       },
       {
+        id: 2,
         name: "human druid",
         playerCharacter: false,
         imagePath: "assets/img/human_druid.jpg"
@@ -28,7 +30,7 @@ export class MiniService {
     })
   }
 
-  filterPlayerCharacters() {
+  clickChip() {
     return this.minis.filter(mini => {
       if(mini.hasOwnProperty('playerCharacter')) {
         return mini.playerCharacter;
@@ -38,6 +40,7 @@ export class MiniService {
 }
 
 class Mini {
+  id: number;
   name?: string;
   race?: string;
   gender?: string;
