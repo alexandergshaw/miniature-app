@@ -14,12 +14,14 @@ export class Tab1Page implements OnInit  {
     {
       id: 0,
       label: 'Player Characters',
-      color: 'secondary'
+      color: 'secondary',
+      selected: false,
     },
     {
       id: 1,
       label: 'Non Player Characters',
-      color: 'secondary'
+      color: 'secondary',
+      selected: false,
     }
   ];
   public colors: string[] = [];
@@ -36,14 +38,29 @@ export class Tab1Page implements OnInit  {
   }
 
   clickChip(chipId: number) {
+    this.filterChips[chipId].selected = this.toggleChipSelection(chipId);
+    this.filterChips[chipId].color = this.changeChipColor(chipId);
+    console.log(this.filterChips);
+  }
+
+  toggleChipSelection(chipId: number) {
+    if(this.filterChips[chipId].selected) {
+      return false;
+    }
+
+    else {
+      return true;
+    }
+  }
+
+  changeChipColor(chipId: number) {
     if(this.filterChips[chipId].color === 'secondary') {
-      this.filterChips[chipId].color = 'primary'
+      return 'primary';
     }
 
     else if(this.filterChips[chipId].color === 'primary') {
-      this.filterChips[chipId].color = 'secondary'
+      return 'secondary';
     }
-
   }
 
   // clickChip() {
@@ -58,4 +75,5 @@ class FilterChip {
   id: number;
   label: string;
   color: string;
+  selected: boolean;
 }
