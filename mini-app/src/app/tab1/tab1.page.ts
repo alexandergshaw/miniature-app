@@ -40,7 +40,9 @@ export class Tab1Page implements OnInit  {
   clickChip(chipId: number) {
     this.filterChips[chipId].selected = this.toggleChipSelection(chipId);
     this.filterChips[chipId].color = this.changeChipColor(chipId);
-    console.log(this.filterChips);
+    let fieldsToFilterOn = this.getFilterFields(this.filterChips);
+
+    console.log('fieldsToFilterOn', fieldsToFilterOn);
   }
 
   toggleChipSelection(chipId: number) {
@@ -61,6 +63,11 @@ export class Tab1Page implements OnInit  {
     else if(this.filterChips[chipId].color === 'primary') {
       return 'secondary';
     }
+  }
+
+  getFilterFields(chips: FilterChip[]) {
+    return chips.filter(chip => chip.selected)
+        .map(chip => chip.label);
   }
 
   // clickChip() {
